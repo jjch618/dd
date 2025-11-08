@@ -1,4 +1,4 @@
-// 출력형식 틀림
+// inorder 출력형식 틀림
 
 /*
 * File Processing Report 2024 - Binary Search Tree skeleton code in C/C++
@@ -132,11 +132,11 @@ void __inorder(_NodePtr __x) {
 	if (__x == nullptr) 
 		return;
 
-	std::cout << "< ";
+	std::cout << "<";
 	__inorder(__x->__left_);
-	std::cout << __x->__key_ << ' ';
+	std::cout << ' ' << __x->__key_ << ' ';
 	__inorder(__x->__right_);
-	std::cout << "> ";
+	std::cout << ">";
 }
 
 
