@@ -79,7 +79,7 @@ diff_test() {
 	fi
 
 	# if leaks, return 2
-	if [ $retvalue -eq 0 ] && [ $LEAK_STATUS -eq 1 ]; then
+	if [ $LEAK_STATUS -eq 1 ]; then
 		retvalue=2
 	fi
 	
