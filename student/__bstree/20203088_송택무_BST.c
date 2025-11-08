@@ -83,7 +83,7 @@ int insertBST(Node **T, long key);
 #define size(T) ((T) ? (T)->size : 0)
 Node *minNode(Node *T, Stack *s);
 Node *maxNode(Node *T, Stack *s);
-Node *eraseBST(Node **T, long key);
+int eraseBST(Node **T, long key);
 
 // 순회
 void inorder(Node *T);
@@ -106,7 +106,9 @@ int main(int argc, char *argv[])
             }
         }
 		else if (op == 'd') {
-			eraseBST(&root, key);
+			if (eraseBST(&root, key) == -1) {
+        		printf("d %ld: The key does not exist\n", key);
+			}
         }
 		inorder(root);
 	}
@@ -232,7 +234,7 @@ Node *maxNode(Node *T, Stack *s)
 
 
 // 삭제한 노드의 부모를 리턴
-Node *eraseBST(Node **T, long key)
+int eraseBST(Node **T, long key)
 {
 	Node *p, *q = NULL, *tmp;
 	Stack path;
@@ -245,8 +247,7 @@ Node *eraseBST(Node **T, long key)
 
 	if (!p) {
 		stack_del(&path);
-        printf("d %ld: The key does not exist\n", key);
-		return NULL;
+		return -1;
 	}
 
 	// 차수2인 경우 차수 0이나 1인 경우로 환원
@@ -309,7 +310,7 @@ ret:
 	}
 	stack_del(&path);
 
-	return q;
+	return 1;
 }
 
 // 순회
