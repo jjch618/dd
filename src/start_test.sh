@@ -17,7 +17,6 @@ test_cases() {
 		if [ $TEST_RESULT -eq 0 ]; then
 			SUCCESS=$((SUCCESS + 1))
 		elif [ $TEST_RESULT -eq 2 ]; then
-			SUCCESS=$((SUCCESS + 1))
 			LEAK_PENALTY=1 # 릭 페널티 플래그 설정
 		fi
 		# TEST_RESULT가 1 (KO)이면 SUCCESS는 증가하지 않음
