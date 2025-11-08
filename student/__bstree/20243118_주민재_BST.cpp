@@ -1,3 +1,5 @@
+// 입출력 x
+
 /*
     화일 처리 BST Report
 
@@ -407,14 +409,14 @@ int main() {
         // insert 쿼리
         if (cmd == 'i') {
             if (!bst.insertBST(key)) // insert의 리턴이 false면 예외
-                std::cerr << "\"i " << key << ": The key already exists\"" << std::endl;
+                std::cerr << "i " << key << ": The key already exists" << std::endl;
             else // 정상 출력
                 std::cout << bst << std::endl; 
         }
         // erase 쿼리
         else {
             if (!bst.eraseBST(key)) //erase의 리턴이 false면 예외 
-                std::cerr << "\"d " << key << ": The key does not exist\"" << std::endl;
+                std::cerr << "d " << key << ": The key does not exist" << std::endl;
             else // 정상 출력
                 std::cout << bst << std::endl;
             

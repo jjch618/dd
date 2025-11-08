@@ -103,11 +103,13 @@ int main(int argc, char *argv[])
 		if (op == 'i'){
 			if (insertBST(&root, key) == -1) {
 				printf("i %ld: The key already exists\n", key);
+				continue;
             }
         }
 		else if (op == 'd') {
 			if (eraseBST(&root, key) == -1) {
         		printf("d %ld: The key does not exist\n", key);
+				continue;
 			}
         }
 		inorder(root);

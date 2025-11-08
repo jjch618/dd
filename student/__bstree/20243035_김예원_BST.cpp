@@ -1,4 +1,6 @@
-﻿//#define _CRT_SECURE_NO_WARNINGS //freopen으로 .txt파일 참조(현재 주석처리)
+﻿// 101 line return이 없어서 심각한 버그 발생
+
+//#define _CRT_SECURE_NO_WARNINGS //freopen으로 .txt파일 참조(현재 주석처리)
 // 
 // 파일명: 20243035_김예원_BST.cpp
 

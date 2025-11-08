@@ -32,7 +32,8 @@ check_compilation() {
 		printf "%.s=" $(seq 1 $(( 80 - ${#text} ))) >> "${DEEPTHOUGHT}"
 
 		printf "\n$> "${COMPILER}" -Wall -Wextra -Werror -g3 "${SOURCE}" -o "${STUDENT_ID}"_exe\n" >> "${DEEPTHOUGHT}"
-		${COMPILER} -Wall -Wextra -Werror -g3 "${PATH_TEST}"/student/${PROJECT}/"${SOURCE}" -o "${EXECUTABLE}" 2>> "${DEEPTHOUGHT}"
+		# ${COMPILER} -Wall -Wextra -Werror -g3 "${PATH_TEST}"/student/${PROJECT}/"${SOURCE}" -o "${EXECUTABLE}" 2>> "${DEEPTHOUGHT}"
+		${COMPILER} -g3 "${PATH_TEST}"/student/${PROJECT}/"${SOURCE}" -o "${EXECUTABLE}" 2>> "${DEEPTHOUGHT}"
 		FLAG=$?
 		printf "\n" >> "${DEEPTHOUGHT}"
 

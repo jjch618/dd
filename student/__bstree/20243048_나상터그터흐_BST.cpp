@@ -1,3 +1,5 @@
+// 입출력 이해x
+
 #include <iostream>
 #include <stack>
 #include <vector>
@@ -143,6 +145,7 @@ int main() {
             }
             if (exists) {
                 cerr << "i " << key << ": The key already exists" << endl;
+                continue;
             } else {
                 insertBST(T, key);
             }
@@ -156,6 +159,7 @@ int main() {
             }
             if (!exists) {
                 cerr << "d " << key << ": The key does not exist" << endl;
+                continue;
             } else {
                 eraseBST(T, key);
             }
