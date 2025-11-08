@@ -1,4 +1,5 @@
-﻿/*
+﻿// 출력형식 틀림
+/*
 * File Processing Report 2025 - Binary Search Tree skeleton code in C/C++
 */
 
@@ -34,9 +35,11 @@ public:
 	template <class _NodePtr>
 	friend void __inorder_stream_helper(std::ostream& os, _NodePtr np) {
 		if (np == nullptr) return;
+		os << '<';
 		__inorder_stream_helper(os, np->__left_);   // 왼쪽 서브트리
-		os << np->__key_ << " ";                    // 현재 노드
+		os << ' ' << np->__key_ << " ";                    // 현재 노드
 		__inorder_stream_helper(os, np->__right_);  // 오른쪽 서브트리
+		os << '>';
 	}
 
 	// Node* 에 대한 출력 연산자: 서브트리를 중위 순회해 키들을 출력
@@ -89,9 +92,11 @@ template <class _NodePtr>
 void __inorder(_NodePtr __x) {
 	// 중위 순회 출력 (오름차순)
 	if (__x == nullptr) return;
+	std::cout << "<";
 	__inorder(__x->__left_);
 	std::cout << __x->__key_ << " ";
 	__inorder(__x->__right_);
+	std::cout << ">";
 }
 
 template <class _NodePtr, class _Tp>

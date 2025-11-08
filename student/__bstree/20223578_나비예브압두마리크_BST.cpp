@@ -1,3 +1,5 @@
+// 출력형식 틀림
+
 /*
  * 20223578_나비예브_압두마리크_BST.cpp
  * 리포트: Report 1 - 이진 탐색 트리 (Binary Search Tree)
@@ -8,6 +10,8 @@
 #include <fstream>  // 파일 입출력을 위해 필요합니다.
 #include <string>   
 #include <new>      // 'new' 와 'delete' (메모리 할당)를 위해 필요합니다.
+
+using namespace std;
 
 template <class _Tp>
 class Node {
@@ -127,42 +131,66 @@ private:
     /**
      * @brief 'p' 명령어를 위해 Pre-order (루트-왼쪽-오른쪽) 순서로 출력합니다.
      */
-    void __printPreOrder(pointer node, std::ofstream& outFile) {
+    void __printPreOrder(pointer node, std::ostream& os) {
         if (node == nullptr) {
             return;
         }
-        outFile << node->__key_ << " "; // 루트
-        __printPreOrder(node->__left_, outFile);  // 왼쪽
-        __printPreOrder(node->__right_, outFile); // 오른쪽
+        os << node->__key_ << " "; // 루트
+        __printPreOrder(node->__left_, os);  // 왼쪽
+        __printPreOrder(node->__right_, os); // 오른쪽
     }
 
-    /**
+        /**
      * @brief 'q' 명령어를 위해 In-order (왼쪽-루트-오른쪽) 특별한 모양으로 출력합니다.
      */
-    void __printPrettyInOrder(pointer node, std::ofstream& outFile) {
+    void __printPrettyInOrder(pointer node, std::ostream& os) {
         if (node == nullptr) {
             return; // 'null'은 출력하지 않습니다.
         }
 
-        outFile << "<";
+        os << "<";
         
         // 왼쪽 부분 (있으면, 재귀하고 스페이스)
-        if (node->__left_ != nullptr) {
-            __printPrettyInOrder(node->__left_, outFile);
-            outFile << " ";
-        }
+        if (node->__left_ != nullptr)
+            __printPrettyInOrder(node->__left_, os);
+        
 
         // 루트
-        outFile << node->__key_;
+        os << ' ' <<node->__key_ << ' ';
 
         // 오른쪽 부분 (있으면, 스페이스하고 재귀)
-        if (node->__right_ != nullptr) {
-            outFile << " ";
-            __printPrettyInOrder(node->__right_, outFile);
-        }
+        if (node->__right_ != nullptr)
+            __printPrettyInOrder(node->__right_, os);
 
-        outFile << ">";
+        os << ">";
     }
+    // /**
+    //  * @brief 'q' 명령어를 위해 In-order (왼쪽-루트-오른쪽) 특별한 모양으로 출력합니다.
+    //  */
+    // void __printPrettyInOrder(pointer node, std::ofstream& cout) {
+    //     if (node == nullptr) {
+    //         return; // 'null'은 출력하지 않습니다.
+    //     }
+
+    //     cout << "<";
+        
+    //     // 왼쪽 부분 (있으면, 재귀하고 스페이스)
+    //     if (node->__left_ != nullptr) {
+    //         __printPrettyInOrder(node->__left_, cout);
+    //         cout << " ";
+    //     }
+
+    //     // 루트
+    //     cout << node->__key_;
+
+    //     // 오른쪽 부분 (있으면, 스페이스하고 재귀)
+    //     if (node->__right_ != nullptr) {
+    //         cout << " ";
+    //         __printPrettyInOrder(node->__right_, cout);
+    //     }
+
+    //     cout << ">";
+    // }
 
     /**
      * @brief 모든 노드를 메모리에서 지웁니다 (Post-order: 왼쪽-오른쪽-루트).
@@ -216,48 +244,48 @@ public:
     /**
      * @brief 'p' 명령어를 위한 public 함수입니다.
      */
-    void printPreOrder(std::ofstream& outFile) {
+    void printPreOrder(std::ostream& os) {
         if (__root_ == nullptr) {
-            outFile << "\n"; // 트리가 비어있으면, 새 줄을 출력합니다.
+            os << "\n"; // 트리가 비어있으면, 새 줄을 출력합니다.
             return;
         }
-        __printPreOrder(__root_, outFile);
-        outFile << "\n"; // 'p' 명령어 끝에 새 줄을 출력합니다.
+        __printPreOrder(__root_, os);
+        os << "\n"; // 'p' 명령어 끝에 새 줄을 출력합니다.
     }
 
     /**
      * @brief 'q' 명령어를 위한 public 함수입니다.
      */
-    void printPrettyInOrder(std::ofstream& outFile) {
+    void printPrettyInOrder(std::ostream& os) {
         if (__root_ == nullptr) {
-            outFile << "\n"; // 트리가 비어있으면, 새 줄을 출력합니다.
+            os << "\n"; // 트리가 비어있으면, 새 줄을 출력합니다.
             return;
         }
-        __printPrettyInOrder(__root_, outFile);
-        outFile << "\n"; // 마지막 결과 끝에 새 줄을 출력합니다.
+        __printPrettyInOrder(__root_, os);
+        os << "\n"; // 마지막 결과 끝에 새 줄을 출력합니다.
     }
 };
 int main(int argc, char* argv[]) {
     //    프로그램 이름 (argv[0]), 입력 파일 (argv[1]), 출력 파일 (argv[2])
-    if (argc != 3) {
-        // 에러 (콘솔에 출력합니다. 왜냐하면 출력 파일 이름을 모릅니다.)
-        std::cerr << "사용법: " << argv[0] << " <input_file> <output_file>\n";
-        return 1; // 에러 코드로 종료합니다.
-    }
+    // if (argc != 3) {
+    //     // 에러 (콘솔에 출력합니다. 왜냐하면 출력 파일 이름을 모릅니다.)
+    //     std::cerr << "사용법: " << argv[0] << " <input_file> <output_file>\n";
+    //     return 1; // 에러 코드로 종료합니다.
+    // }
 
-    // 2. 파일 열기
-    std::ifstream inFile(argv[1]);
-    if (!inFile.is_open()) {
-        std::cerr << "에러: 입력 파일 " << argv[1] << "을 열 수 없습니다.\n";
-        return 1;
-    }
+    // // 2. 파일 열기
+    // std::ifstream cin(argv[1]);
+    // if (!cin.is_open()) {
+    //     std::cerr << "에러: 입력 파일 " << argv[1] << "을 열 수 없습니다.\n";
+    //     return 1;
+    // }
 
-    std::ofstream outFile(argv[2]);
-    if (!outFile.is_open()) {
-        std::cerr << "에러: 출력 파일 " << argv[2] << "을 열 수 없습니다.\n";
-        inFile.close();
-        return 1;
-    }
+    // std::ofstream cout(argv[2]);
+    // if (!cout.is_open()) {
+    //     std::cerr << "에러: 출력 파일 " << argv[2] << "을 열 수 없습니다.\n";
+    //     cin.close();
+    //     return 1;
+    // }
 
     // 3. BST 객체 만들기
     BST<int> tree;
@@ -266,37 +294,38 @@ int main(int argc, char* argv[]) {
     char command;
     int key;
 
-    while (inFile >> command) {
+    while (cin >> command) {
         
         switch (command) {
             // 'i' (insert) 명령어
             case 'i':
-                inFile >> key;
+                cin >> key;
                 if (tree.insert(key)) {
-                    outFile << key << " is inserted.\n";
+                    tree.printPrettyInOrder(cout);
                 } else {
-                    outFile << key << " already exists.\n";
+                    cout << "i " << key << ": The key already exists" << std::endl;
                 }
                 break;
 
             // 'd' (delete) 명령어
             case 'd':
-                inFile >> key;
+                cin >> key;
                 if (tree.erase(key)) {
-                    outFile << key << " is deleted.\n";
+                    tree.printPrettyInOrder(cout);
+                    // cout << key << " is deleted.\n";
                 } else {
-                    outFile << key << " is not available.\n";
+                    std::cout << "d " << key << ": The key does not exist" << std::endl;
                 }
                 break;
 
             // 'p' (print) 명령어
-            case 'p':
-                tree.printPreOrder(outFile);
-                break;
+            // case 'p':
+            //     tree.printPreOrder(cout);
+            //     break;
 
             // 'q' (quit) 명령어
             case 'q':
-                tree.printPrettyInOrder(outFile);
+                tree.printPrettyInOrder(cout);
                 // 메모리 청소는 tree 소멸자(~BST())가 자동으로 합니다.
                 // 'break'를 사용해서 루프를 나갑니다.
                 goto end_loop; // 'while' 루프를 멈춥니다.
@@ -310,8 +339,6 @@ int main(int argc, char* argv[]) {
 end_loop:
 
     // 5. 파일 닫고 프로그램 끝내기
-    inFile.close();
-    outFile.close();
 
     // 'tree' 객체가 여기서 사라집니다 (out of scope).
     // 이때 소멸자 (~BST())가 불리고, __clear() 함수가 모든 메모리를 지웁니다.

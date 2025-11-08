@@ -1,3 +1,5 @@
+// 출력형식 틀림
+
 /*
 * File Processing Report 2024 - Binary Search Tree skeleton code in C/C++
 *
@@ -46,11 +48,11 @@ class Node {
 		if (np == nullptr)
 			return os;
 
-		os << "< ";
+		os << "<";
 		os << np->__left_;
-		os << np->__key_ << ' ';
+		os << ' ' << np->__key_ << ' ';
 		os << np->__right_;
-		os << "> ";
+		os << ">";
 
 		return os;
 	}

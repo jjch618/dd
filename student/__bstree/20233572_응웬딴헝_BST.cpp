@@ -1,3 +1,5 @@
+// 출력 형식 틀림
+
 // 참고 내용 (Reference): geeksforgeeks's Binary Search Tree in C++ (https://www.geeksforgeeks.org/cpp/cpp-binary-search-tree/)
 #include <iostream>
 using namespace std;
@@ -87,20 +89,16 @@ void inorder(Node* T) {
         return;
     }
 
-    cout << "< ";
-    if (T->left != nullptr) {
+    cout << "<";
+    if (T->left != nullptr)
         inorder(T->left);
-        cout << " ";
-    }
 
-    cout << T->key;
+    cout << ' ' << T->key << ' ';
 
-    if (T->right != nullptr) {
-        cout << " ";
+    if (T->right != nullptr)
         inorder(T->right);
-    }
 
-    cout << " >";
+    cout << ">";
 }
 
 bool eraseBST(Node*& T, int key) {

@@ -1,3 +1,6 @@
+// 입출력의 이해x (없는 키 delete 시 처리x)
+// main함수에서 중괄호 없는 if 문 때문에 else if 가 잘못 매칭되어 실행 제대로 안됨
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -97,11 +100,14 @@ int main(int argc, char *argv[])
 	Node *root = NULL;
 
 	while (read_cmd(&cmdbuf, &cmdbufsize, &op, &key) != -1) {
-		if (op == 'i')
-			if (insertBST(&root, key) == -1)
+		if (op == 'i'){
+			if (insertBST(&root, key) == -1) {
 				printf("i %ld: The key already exists\n", key);
-		else if (op == 'd')
+            }
+        }
+		else if (op == 'd') {
 			eraseBST(&root, key);
+        }
 		inorder(root);
 	}
 
@@ -239,6 +245,7 @@ Node *eraseBST(Node **T, long key)
 
 	if (!p) {
 		stack_del(&path);
+        printf("d %ld: The key does not exist\n", key);
 		return NULL;
 	}
 

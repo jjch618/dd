@@ -1,3 +1,5 @@
+// 출력형식 틀림
+
 /*
 * Binary Search Tree code in C++
 * 20243047 김형민
@@ -30,9 +32,9 @@ public: // Constructor
 
 		if (np == nullptr) return os;
 
-		os << "<";  
+		os << "<";
 		os << np->__left_;
-		os << np->__key_;                 
+		os << ' ' << np->__key_ << ' ';                 
 		os << np->__right_;              
 		os << ">";
 
@@ -113,7 +115,7 @@ void __inorder(_NodePtr __x) {
 	if (__x == nullptr) return;
 
 	__inorder(__x->__left_);                 // 왼쪽 자식
-	std::cout << __x->__key_ << " ";         // 현재 노드 출력
+	std::cout << __x->__key_;         // 현재 노드 출력
 	__inorder(__x->__right_);                // 오른쪽 자식
 }
 
