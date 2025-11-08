@@ -95,11 +95,6 @@ start_test() {
 			# deepthought 파일 출력
 			printf "%-16s" "Yes" >> "${PATH_DEEPTHOUGHT}"/${PROJECT}/deepthought
 			
-			SCORE=$((SCORE - 20))
-			# 점수가 0 미만으로 내려가지 않도록 보정
-			if [ $SCORE -lt 0 ]; then
-				SCORE=0
-			fi
 		else
 			# 콘솔 출력 (파란색 "OK")
 			printf "${BLUE}%-16s${DEFAULT}" "OK"
