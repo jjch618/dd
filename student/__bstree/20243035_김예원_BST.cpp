@@ -98,7 +98,7 @@ pair<_NodePtr, bool> __insertBST(_NodePtr& __root, const _Tp& key) {
         return { __root, true }; //현재 루트포인터와 key값의 유무를 return한다
     }
     else if (key < __root->__key_) {    // key가 루트보다 작으면 왼쪽 서브트리로 재귀
-        __insertBST(__root->__left_, key); 
+        return __insertBST(__root->__left_, key); 
     }
     else if (key > __root->__key_) { // key가 루트보다 크면 오른쪽 서브트리로 재귀
         return __insertBST(__root->__right_, key);
